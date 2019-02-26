@@ -61,10 +61,10 @@ for apk in $(find *.apk -type f); do
   # curl "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk" --header 'Content-Type: application/zip' --upload-file $apkName.apk -X POST
   # curl "https://uploads.github.com/repos/${RELEASE_REPO}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk" --header 'Content-Type: application/zip' --upload-file $apkName.apk -X POST
 
-  curl \
-    -X POST \
-    -H "Content-Type: vnd.android.package-archive" \
-    -H "Authorization: token $GITHUB_API_KEY" \
+  curl 
+    -X POST 
+    -H "Content-Type: vnd.android.package-archive" 
+    -H "Authorization: token $GITHUB_API_KEY" 
     --data-binary @"${apkName}.apk"
     "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}.apk"
 
