@@ -50,6 +50,7 @@ API_JSON="$(printf '{"tag_name": "v%s","target_commitish": "develop","name": "v%
 # newRelease="$(curl --data  https://api.github.com/repos/$RELEASE_REPO/releases?access_token=$GITHUB_API_KEY)"
 
 # rID="$(echo "$newRelease" | jq ".id")"
+rID="1.1.0"
 
 cd $HOME/buildApk/
 # echo "Push apk to $rID"
@@ -57,8 +58,8 @@ echo "Push apk to github"
 for apk in $(find *.apk -type f); do
   apkName="${apk::-4}"
   printf "Apk $apkName\n"
-  # curl "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk" --header 'Content-Type: application/zip' --upload-file $apkName.apk -X POST
-  curl "https://uploads.github.com/repos/${RELEASE_REPO}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk" --header 'Content-Type: application/zip' --upload-file $apkName.apk -X POST
+  curl "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk" --header 'Content-Type: application/zip' --upload-file $apkName.apk -X POST
+  # curl "https://uploads.github.com/repos/${RELEASE_REPO}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk" --header 'Content-Type: application/zip' --upload-file $apkName.apk -X POST
 
 done
 
