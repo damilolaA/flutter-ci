@@ -31,7 +31,7 @@ git config --global user.name "$USER_AUTH CI"
 git clone --quiet --branch=develop  https://$USER_AUTH:$GITHUB_API_KEY@github.com/$USER_AUTH/$RELEASE_REPO.git  develop > /dev/null
 # create version file
 echo "Create Version File"
-cd master
+cd develop
 echo "$VERSION_KEY v$suffix" > "$VERSION_KEY.txt"
 
 
