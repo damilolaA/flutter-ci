@@ -15,7 +15,7 @@ VERSION_KEY=damo
 REPO_SLUG=
 COMMIT="New app release"
 
-cp ./build/app/outputs/apk/release/app-release.apk ./app_name$suffix.apk
+# cp ./build/app/outputs/apk/release/app-release.apk ./app_name$suffix.apk
 
 # create a new directory that will contain our generated apk
 mkdir $HOME/buildApk/
@@ -51,7 +51,7 @@ API_JSON="$(printf '{"tag_name": "v%s","target_commitish": "develop","name": "v%
 
 # rID="$(echo "$newRelease" | jq ".id")"
 
-cd $HOME/${VERSION_KEY}
+cd $HOME/buildApk/
 # echo "Push apk to $rID"
 echo "Push apk to github"
 for apk in $(find *.apk -type f); do
