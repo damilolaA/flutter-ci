@@ -16,7 +16,7 @@ jobs:
           key: jars-{{ checksum "android/build.gradle" }}-{{ checksum  "android/app/build.gradle" }}
       - run: flutter doctor
       # - run: flutter test 
-      # - run: flutter -v build apk
+      - run: flutter -v build apk
 workflows:
   version: 2
   build-deploy:
