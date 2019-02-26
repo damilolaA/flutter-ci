@@ -24,4 +24,4 @@ workflows:
       - build:
           filters:
             branches:
-              only: develop-shop-r2
+              only: develop
