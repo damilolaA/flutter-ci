@@ -63,9 +63,12 @@ for apk in $(find *.apk -type f); do
 
   curl \
     -X POST \
-    -F "file=@/$HOME/buildApk/${apkName}.apk" \
+    -H "Content-Type: vnd.android.package-archive" \
+    -H "Authorization: token $GITHUB_API_KEY" \
+    --data-binary @"${apkName}.apk"
     "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}.apk"
 
+    # -F "file=@/$HOME/buildApk/${apkName}.apk" \
     # -H "Content-Type: vnd.android.package-archive" \
 
 done
