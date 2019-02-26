@@ -63,7 +63,7 @@ for apk in $(find *.apk -type f); do
 
   curl \
     -X POST \
-    -H "Content-Type: multipart/form-data" \
+    -H "Content-Type: application/octet-stream" \
     --data-binary @ "$HOME/buildApk/${apkName}.apk" \
     "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk"
 
