@@ -58,8 +58,15 @@ echo "Push apk to github"
 for apk in $(find *.apk -type f); do
   apkName="${apk::-4}"
   printf "Apk $apkName\n"
-  curl "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk" --header 'Content-Type: application/zip' --upload-file $apkName.apk -X POST
+  # curl "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk" --header 'Content-Type: application/zip' --upload-file $apkName.apk -X POST
   # curl "https://uploads.github.com/repos/${RELEASE_REPO}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk" --header 'Content-Type: application/zip' --upload-file $apkName.apk -X POST
+
+  curl \
+    -X POST \
+    -H "Content-Type: multipart/form-data" \
+    -F "file=@/$HOME/buildApk/${apkName}.apk" \
+    "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}-v1.apk"
+
 
 done
 
