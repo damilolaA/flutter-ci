@@ -66,7 +66,7 @@ for apk in $(find *.apk -type f); do
     -H "Content-Type: vnd.android.package-archive" \
     -H "Authorization: token $GITHUB_API_KEY" \
     -F "file=@/$HOME/buildApk/${apkName}.apk" \
-    "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?name=${apkName}.apk"
+    "https://uploads.github.com/repos/${USER_AUTH}/${RELEASE_REPO}/releases/${rID}/assets?name=${apkName}.apk"
 
 done
 echo -e "Done\n"
