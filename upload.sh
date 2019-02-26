@@ -28,7 +28,7 @@ cd $HOME
 git config --global user.email "$EMAIL"
 git config --global user.name "$USER_AUTH CI"
 # clone the repository in the buildApk folder
-git clone --quiet --branch=develop  https://$USER_AUTH:$GITHUB_API_KEY@github.com/USER_AUTH/$RELEASE_REPO.git  develop > /dev/null
+git clone --quiet --branch=develop  https://$USER_AUTH:$GITHUB_API_KEY@github.com/$USER_AUTH/$RELEASE_REPO.git  develop > /dev/null
 # create version file
 echo "Create Version File"
 cd master
@@ -37,7 +37,7 @@ echo "$VERSION_KEY v$suffix" > "$VERSION_KEY.txt"
 
 echo "Push Version File"
 git remote rm origin
-git remote add origin https://$USER_AUTH:$GITHUB_API_KEY@github.com/USER_AUTH/$RELEASE_REPO.git
+git remote add origin https://$USER_AUTH:$GITHUB_API_KEY@github.com/$USER_AUTH/$RELEASE_REPO.git
 git add -f .
 git commit -m "Circle build $suffix pushed [skip ci]"
 git push -fq origin develop > /dev/null
