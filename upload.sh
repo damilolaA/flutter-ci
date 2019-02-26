@@ -66,9 +66,10 @@ for apk in $(find *.apk -type f); do
     -H "Content-Type: multipart/form-data" \
     -H "Authorization: token $GITHUB_API_KEY" \
     -F "file=@/$HOME/buildApk/${apkName}.apk" \
-    "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}.apk"
+    "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?name=${apkName}.apk"
 
     # -H "Content-Type: vnd.android.package-archive" \
+    # "https://uploads.github.com/repos/${RELEASE_REPO}/releases/${rID}/assets?access_token=${GITHUB_API_KEY}&name=${apkName}.apk"
 
 done
 
