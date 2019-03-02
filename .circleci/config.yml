@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: cirrusci/flutter
-      - image: circleci/golang:1.8
+      - image: circleci/golang
     steps:
       - checkout
       - restore_cache:
