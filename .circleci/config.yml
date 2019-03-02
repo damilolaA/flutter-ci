@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: cirrusci/flutter
-      - image: circleci/golang:1.8
     steps:
       - checkout
       - restore_cache:
@@ -20,13 +19,18 @@ jobs:
       - run: flutter -v build apk
       - attach_workspace:
           at: ./build/app/outputs/apk/release
-      - run: go get github.com/tcnksm/ghr
+  release:
+    working_directory: /go/src/github.com/damilolaA/flutter-ci
+    docker: 
+      - image: circleci/golang
+    steps:
+      - checkout
       - run:
           name: "Publish Release on GitHub"
           command: |
+            go get github.com/tcnksm/ghr
             VERSION=$(my-binary --version)
             ghr -t ${GITHUB_API_KEY} -u ${PROJECT_USERNAME} -r ${PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
-
       # - run: bash ./upload.sh
 workflows:
   version: 2
@@ -36,3 +40,6 @@ workflows:
           filters:
             branches:
               only: develop
+      - release:
+          requires:
+            - build
