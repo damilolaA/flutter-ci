@@ -30,7 +30,7 @@ jobs:
           command: |
             go get github.com/tcnksm/ghr
             VERSION=$(my-binary --version)
-            ghr -t ${GITHUB_API_KEY} -u ${PROJECT_USERNAME} -r ${PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+            ghr -t ${GITHUB_API_KEY} -u ${PROJECT_USERNAME} -r ${PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./build/app/outputs/apk/release/
       # - run: bash ./upload.sh
 workflows:
   version: 2
@@ -41,5 +41,6 @@ workflows:
             branches:
               only: develop
       - release:
-          requires:
-            - build
+          filters:
+            branches:
+              only: develop
